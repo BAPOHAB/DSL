@@ -1,4 +1,4 @@
-job('gr8 example') {
+freeStyleJob('gr8 example') {
 scm {
 github 'sheehan/job-dsl-gradle-example'
 }
