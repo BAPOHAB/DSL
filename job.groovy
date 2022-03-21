@@ -1,14 +1,15 @@
-def project = 'BAPOHAB/DSL'
-def branchApi = url("https://api.github.com/repos/${project}/branches")
-def branches = groovy.json.JsonSlurper().parse(branchApi.newReader())
-def i = 1
+def project = 'quidryan/aws-sdk-test'
+def branchApi = new URL("https://api.github.com/repos/${project}/branches")
+def branches = new groovy.json.JsonSlurper().parse(branchApi.newReader())
 branches.each {
     def branchName = it.name
-    def jobName = "HW6/MNTLAB-vvarona-child${i}-build-job"
-    freeStyleJob(Closure jobName) {
-        steps {
-            echo "Hello from ${branchName}"
+    def jobName = "${project}-${branchName}".replaceAll('/','-')
+    job(jobName) {
+        scm {
+            git("git://github.com/${project}.git", branchName)
         }
-    i += 1
+        steps {
+            maven("test -Dproject.name=${project}/${branchName}")
+        }
     }
 }
