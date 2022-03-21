@@ -4,7 +4,7 @@ def branches = new groovy.json.JsonSlurper().parse(branchApi.newReader())
 branches.each {
     def branchName = it.name
     def jobName = "${project}-${branchName}".replaceAll('/','-')
-    job(jobName) {
+    freeStyleJob(jobName) {
         scm {
             git("git://github.com/${project}.git", branchName)
         }
