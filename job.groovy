@@ -1,9 +1,9 @@
 
-def i = [1, 2, 3, 4]
-i.each {
+
+for (int i=1; i<5; i++) {
     freeStyleJob('jobName') {
         steps {
-            echo "Hello from ${jobName}"
+            echo "Hello from"
         }
     }
 }
