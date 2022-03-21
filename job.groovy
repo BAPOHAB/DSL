@@ -1,15 +1,10 @@
-def project = 'quidryan/aws-sdk-test'
-def branchApi = new URL("https://api.github.com/repos/${project}/branches")
-def branches = new groovy.json.JsonSlurper().parse(branchApi.newReader())
-branches.each {
-    def branchName = it.name
-    def jobName = "${project}-${branchName}".replaceAll('/','-')
+
+def i = [1, 2, 3, 4]
+i.each {
+    def jobName = "HW6/MNTLAB-vvarona-child${i}-build-job"
     freeStyleJob(jobName) {
-        scm {
-            git("git://github.com/${project}.git", branchName)
-        }
         steps {
-            maven("test -Dproject.name=${project}/${branchName}")
+            echo "Hello from ${jobName}"
         }
     }
 }
