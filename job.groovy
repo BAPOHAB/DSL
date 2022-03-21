@@ -1,5 +1,5 @@
 def project = 'BAPOHAB/DSL'
-def branchApi = URL("https://api.github.com/repos/${project}/branches")
+def branchApi = url("https://api.github.com/repos/${project}/branches")
 def branches = groovy.json.JsonSlurper().parse(branchApi.newReader())
 def i = 1
 branches.each {
