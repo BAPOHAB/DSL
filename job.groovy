@@ -6,9 +6,6 @@ branches.each {
     def branchName = it.name
     def jobName = "HW6/MNTLAB-vvarona-child${i}-build-job"
     freeStyleJob(jobName) {
-        scm {
-            git("git://github.com/${project}.git", branchName)
-        }
         steps {
             echo "Hello from ${branchName}"
         }
