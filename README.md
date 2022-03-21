@@ -1,1 +1,1 @@
-# DSL plugin Jwnkins LAB
+# DSL plugin for Jenkins LAB
