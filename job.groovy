@@ -10,5 +10,6 @@ branches.each {
             echo "Hello from ${branchName}"
         }
     i += 1
+    parallel(jobName)
     }
 }
