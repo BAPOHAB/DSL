@@ -4,8 +4,8 @@ def branches = new groovy.json.JsonSlurper().parse(branchApi.newReader())
 def i = 1
 branches.each {
     def branchName = it.name
-    def jobName = "MNTLAB-vvarona-child${i}-build-job"
-    freeStyleJob(jobName) {
+    def jobName = "HW6/MNTLAB-vvarona-child${i}-build-job"
+    freeStyleJob('HW6/MNTLAB-vvarona-child${i}-build-job') {
         scm {
             git("git://github.com/${project}.git", branchName)
         }
