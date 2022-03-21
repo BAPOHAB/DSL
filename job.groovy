@@ -5,11 +5,10 @@ def i = 1
 branches.each {
     def branchName = it.name
     def jobName = "HW6/MNTLAB-vvarona-child${i}-build-job"
-    freeStyleJob(jobName) {
+    freeStyleJob(string jobName) {
         steps {
             echo "Hello from ${branchName}"
         }
     i += 1
-    parallel(jobName)
     }
 }
