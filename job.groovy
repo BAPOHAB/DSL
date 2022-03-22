@@ -7,7 +7,7 @@ branches.each {
     def jobName = "HW6/MNTLAB-vvarona-child${i}-build-job"
     freeStyleJob(jobName) {
         steps {
-            shell(echo "Hello from ${branchName}")
+            shell('echo "Hello from ${branchName}"')
         }
     i += 1
     }
