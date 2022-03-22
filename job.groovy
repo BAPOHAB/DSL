@@ -22,7 +22,7 @@ job('HW6/MNTLAB-vvarona-main-build-job') {
             description('Job choosing')
             choiceType('CHECKBOX')
             groovyScript {
-                script('for (int i=1; i<5; i++) { println "HW6/MNTLAB-vvarona-child${i}-build-job"}')
+                script('["HW6/MNTLAB-vvarona-child1-build-job", "HW6/MNTLAB-vvarona-child2-build-job"],["HW6/MNTLAB-vvarona-child3-build-job", "HW6/MNTLAB-vvarona-child4-build-job"]')
             }
         }
     }
