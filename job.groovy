@@ -18,7 +18,7 @@ job('HW6/MNTLAB-vvarona-main-build-job') {
     description('Main job')
     parameters { // Allows to parameterize the job.
         stringParam('BRANCH', 'main', 'Branch choosing') // Defines a simple text parameter, where users can enter a string value.
-        activeChoiceParam('CHOICE-1') { // Defines a parameter that dynamically generates a list of value options for a build parameter using a Groovy script or a script from the Scriptler catalog.
+        activeChoiceReactiveParam('CHOICE-1') { // Defines a parameter that dynamically generates a list of value options for a build parameter using a Groovy script or a script from the Scriptler catalog.
             description('Job choosing')
             choiceType('CHECKBOX') // Selects one of four different rendering options for the option values.
             groovyScript { // Use a Groovy script to generate value options.
