@@ -59,8 +59,11 @@ job('HW6/MNTLAB-vvarona-child1-build-job'){
     parameters {
         stringParam('BRANCH', '', 'Branch choosing')
     } 
+    scm {
+      git("${GIT_URL}", '$BRANCH')
+    }
     steps {
-        shell('pwd')
+        shell('script.sh')
     }  
 }
 
