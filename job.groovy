@@ -17,14 +17,26 @@ branches.each {
 job('HW6/MNTLAB-vvarona-main-build-job') {
     description('Main job')
     parameters { // Allows to parameterize the job.
-        stringParam('BRANCH', 'main', 'Branch choosing') // Defines a simple text parameter, where users can enter a string value.
-        activeChoiceReactiveParam('CHOICE-1') { // Defines a parameter that dynamically generates a list of value options for a build parameter using a Groovy script or a script from the Scriptler catalog.
+        activeChoiceParam('BRANCH') { // Defines a parameter that dynamically generates a list of value options for a build parameter using a Groovy script or a script from the Scriptler catalog.
+            description('Branch choosing')
+            choiceType('SINGLE_SELECT') // Selects one of four different rendering options for the option values.
+            groovyScript { // Use a Groovy script to generate value options.
+                script('["main", "a_branch", "b_branch", "c_branch", "d_branch"]')
+                fallbackScript() // Provides alternate parameter value options in case the main script fails.
+            }
+        }
+
+        activeChoiceParam('CHOICE-1') { // Defines a parameter that dynamically generates a list of value options for a build parameter using a Groovy script or a script from the Scriptler catalog.
             description('Job choosing')
             choiceType('CHECKBOX') // Selects one of four different rendering options for the option values.
             groovyScript { // Use a Groovy script to generate value options.
                 script('["HW6/MNTLAB-vvarona-child1-build-job", "HW6/MNTLAB-vvarona-child2-build-job", "HW6/MNTLAB-vvarona-child3-build-job", "HW6/MNTLAB-vvarona-child4-build-job"]')
+                fallbackScript() // Provides alternate parameter value options in case the main script fails.
             }
         }
+    }
+    scm {
+        git("${GIT_URL}", '$BRANCH')
     }
     steps {
         downstreamParameterized { // Triggers new parametrized builds.
