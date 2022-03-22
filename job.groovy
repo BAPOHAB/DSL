@@ -40,7 +40,7 @@ job('HW6/MNTLAB-vvarona-main-build-job') {
     }
     steps {
         downstreamParameterized { // Triggers new parametrized builds.
-            trigger('$CHILD') { // Adds a trigger for parametrized builds.
+            trigger('$BRANCH') { // Adds a trigger for parametrized builds.
                 block { // Blocks until the triggered projects finish their builds.
                     buildStepFailure('FAILURE') // Fails the build step if the triggered build is worse or equal to the threshold.
                     failure('FAILURE') // Marks this build as failure if the triggered build is worse or equal to the threshold.
