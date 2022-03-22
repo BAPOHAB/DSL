@@ -1,1 +1,1 @@
-echo "Hello form a_branch!"
+echo "Hello form b_branch!"
