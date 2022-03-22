@@ -60,7 +60,8 @@ job('HW6/MNTLAB-vvarona-child1-build-job'){
       git("${GIT_URL}", '$BRANCH')
     }
     steps {
-        shell('chmod +x ./script.sh && ./script.sh > output.txt')
+        shell('chmod +x ./script.sh && ./script.sh')
+        shell('./script.sh > output.txt')
         shell('tar -czf ${BRANCH}_dsl_script.tar.gz output.txt job.groovy')
     }  
     publishers {
@@ -79,7 +80,14 @@ job('HW6/MNTLAB-vvarona-child2-build-job'){
     }
     steps {
         shell('chmod +x ./script.sh && ./script.sh')
+        shell('./script.sh > output.txt')
+        shell('tar -czf ${BRANCH}_dsl_script.tar.gz output.txt job.groovy')
     }  
+    publishers {
+        archiveArtifacts {
+            pattern('${BRANCH}_dsl_script.tar.gz')
+        }
+    } 
 }
   
 job('HW6/MNTLAB-vvarona-child3-build-job'){
@@ -91,7 +99,14 @@ job('HW6/MNTLAB-vvarona-child3-build-job'){
     }
     steps {
         shell('chmod +x ./script.sh && ./script.sh')
+        shell('./script.sh > output.txt')
+        shell('tar -czf ${BRANCH}_dsl_script.tar.gz output.txt job.groovy')
     }  
+    publishers {
+        archiveArtifacts {
+            pattern('${BRANCH}_dsl_script.tar.gz')
+        }
+    }
 }
 
 job('HW6/MNTLAB-vvarona-child4-build-job'){
@@ -103,5 +118,12 @@ job('HW6/MNTLAB-vvarona-child4-build-job'){
     }
     steps {
         shell('chmod +x ./script.sh && ./script.sh')
+        shell('./script.sh > output.txt')
+        shell('tar -czf ${BRANCH}_dsl_script.tar.gz output.txt job.groovy')
     }  
+    publishers {
+        archiveArtifacts {
+            pattern('${BRANCH}_dsl_script.tar.gz')
+        }
+    }
 }
