@@ -44,24 +44,36 @@ job('HW6/MNTLAB-vvarona-main-build-job') {
 
 
 job('HW6/MNTLAB-vvarona-child1-build-job'){
+    parameters {
+        stringParam('BRANCH', '', 'Branch choosing')
+    } 
     steps {
         shell('pwd')
     }  
 }
 
 job('HW6/MNTLAB-vvarona-child2-build-job'){
+    parameters {
+        stringParam('BRANCH', '', 'Branch choosing')
+    } 
     steps {
         shell('ls -alh')
     }  
 }
   
 job('HW6/MNTLAB-vvarona-child3-build-job'){
+    parameters {
+        stringParam('BRANCH', '', 'Branch choosing')
+    } 
     steps {
         shell('ls -alh /')
     }  
 }
 
 job('HW6/MNTLAB-vvarona-child4-build-job'){
+    parameters {
+        stringParam('BRANCH', '', 'Branch choosing')
+    } 
     steps {
         shell('df -h')
     }  
