@@ -21,16 +21,16 @@ job('HW6/MNTLAB-vvarona-main-build-job') {
             description('Branch choosing')
             choiceType('SINGLE_SELECT') // Selects one of four different rendering options for the option values.
             groovyScript { // Use a Groovy script to generate value options.
-                script('["main", "a_branch", "b_branch", "c_branch", "d_branch"]')
+                script('[return "main", "a_branch", "b_branch", "c_branch", "d_branch"]')
                 fallbackScript() // Provides alternate parameter value options in case the main script fails.
             }
         }
 
-        activeChoiceParam('CHOICE-1') { // Defines a parameter that dynamically generates a list of value options for a build parameter using a Groovy script or a script from the Scriptler catalog.
+        activeChoiceParam('CHILD') { // Defines a parameter that dynamically generates a list of value options for a build parameter using a Groovy script or a script from the Scriptler catalog.
             description('Job choosing')
             choiceType('CHECKBOX') // Selects one of four different rendering options for the option values.
             groovyScript { // Use a Groovy script to generate value options.
-                script('["MNTLAB-vvarona-child1-build-job", "MNTLAB-vvarona-child2-build-job", "MNTLAB-vvarona-child3-build-job", "MNTLAB-vvarona-child4-build-job"]')
+                script('return ["MNTLAB-vvarona-child1-build-job", "MNTLAB-vvarona-child2-build-job", "MNTLAB-vvarona-child3-build-job", "MNTLAB-vvarona-child4-build-job"]')
                 fallbackScript() // Provides alternate parameter value options in case the main script fails.
             }
         }
@@ -40,7 +40,7 @@ job('HW6/MNTLAB-vvarona-main-build-job') {
     }
     steps {
         downstreamParameterized { // Triggers new parametrized builds.
-            trigger('$CHOICE-1') { // Adds a trigger for parametrized builds.
+            trigger('$CHILD') { // Adds a trigger for parametrized builds.
                 block { // Blocks until the triggered projects finish their builds.
                     buildStepFailure('FAILURE') // Fails the build step if the triggered build is worse or equal to the threshold.
                     failure('FAILURE') // Marks this build as failure if the triggered build is worse or equal to the threshold.
