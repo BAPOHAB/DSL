@@ -30,7 +30,7 @@ job('HW6/MNTLAB-vvarona-main-build-job') {
             description('Job choosing')
             choiceType('CHECKBOX') // Selects one of four different rendering options for the option values.
             groovyScript { // Use a Groovy script to generate value options.
-                script('["HW6/MNTLAB-vvarona-child1-build-job", "HW6/MNTLAB-vvarona-child2-build-job", "HW6/MNTLAB-vvarona-child3-build-job", "HW6/MNTLAB-vvarona-child4-build-job"]')
+                script('["MNTLAB-vvarona-child1-build-job", "MNTLAB-vvarona-child2-build-job", "MNTLAB-vvarona-child3-build-job", "MNTLAB-vvarona-child4-build-job"]')
                 fallbackScript() // Provides alternate parameter value options in case the main script fails.
             }
         }
