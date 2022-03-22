@@ -35,17 +35,14 @@ job('HW6/MNTLAB-vvarona-main-build-job') {
             }
         }
     }
-    scm {
-        git("${GIT_URL}", '$BRANCH')
-    }
     steps {
         downstreamParameterized { // Triggers new parametrized builds.
             trigger('$CHILD') { // Adds a trigger for parametrized builds.
-               /* block { // Blocks until the triggered projects finish their builds.
+                block { // Blocks until the triggered projects finish their builds.
                     buildStepFailure('FAILURE') // Fails the build step if the triggered build is worse or equal to the threshold.
                     failure('FAILURE') // Marks this build as failure if the triggered build is worse or equal to the threshold.
                     unstable('UNSTABLE') // Mark this build as unstable if the triggered build is worse or equal to the threshold.
-                }*/
+                }
                 parameters { // Adds parameter values for the projects to trigger.
                     currentBuild() // Copies parameters from the current build, except for file parameters.
                 }
@@ -71,8 +68,11 @@ job('HW6/MNTLAB-vvarona-child2-build-job'){
     parameters {
         stringParam('BRANCH', '', 'Branch choosing')
     } 
+    scm {
+      git("${GIT_URL}", '$BRANCH')
+    }
     steps {
-        shell('ls -alh')
+        shell('chmod +x ./script.sh && ./script.sh')
     }  
 }
   
@@ -80,8 +80,11 @@ job('HW6/MNTLAB-vvarona-child3-build-job'){
     parameters {
         stringParam('BRANCH', '', 'Branch choosing')
     } 
+    scm {
+      git("${GIT_URL}", '$BRANCH')
+    }
     steps {
-        shell('ls -alh /')
+        shell('chmod +x ./script.sh && ./script.sh')
     }  
 }
 
@@ -89,7 +92,10 @@ job('HW6/MNTLAB-vvarona-child4-build-job'){
     parameters {
         stringParam('BRANCH', '', 'Branch choosing')
     } 
+    scm {
+      git("${GIT_URL}", '$BRANCH')
+    }
     steps {
-        shell('df -h')
+        shell('chmod +x ./script.sh && ./script.sh')
     }  
 }
