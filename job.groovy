@@ -21,7 +21,7 @@ job('HW6/MNTLAB-vvarona-main-build-job') {
             description('Branch choosing')
             choiceType('SINGLE_SELECT') // Selects one of four different rendering options for the option values.
             groovyScript { // Use a Groovy script to generate value options.
-                script('[return "main", "a_branch", "b_branch", "c_branch", "d_branch"]')
+                script('return ["main", "a_branch", "b_branch", "c_branch", "d_branch"]')
                 fallbackScript() // Provides alternate parameter value options in case the main script fails.
             }
         }
@@ -63,7 +63,7 @@ job('HW6/MNTLAB-vvarona-child1-build-job'){
       git("${GIT_URL}", '$BRANCH')
     }
     steps {
-        shell('script.sh')
+        shell('chmod +x ./script.sh && ./script.sh')
     }  
 }
 
